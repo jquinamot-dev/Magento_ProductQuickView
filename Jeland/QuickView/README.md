@@ -1,4 +1,4 @@
-# Jeland_QuickView asfasfasf
+# Jeland_QuickView
 
 [![Magento 2](https://img.shields.io/badge/Magento-2.x-orange.svg)](https://magento.com/)
 [![License](https://img.shields.io/badge/License-Open--Source-blue.svg)]()
