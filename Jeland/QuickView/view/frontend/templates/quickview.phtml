@@ -1,0 +1,46 @@
+<?php if ($block->isEnabled()): ?>
+<div id="quick-view-modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2><?= $block->escapeHtml($block->getModalTitle() ?: 'Quick View') ?></h2>
+        <div class="quick-view-content">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+require(['jquery'], function($){
+    $('.quick-view-button').on('click', function(e){
+        e.preventDefault();
+        var productUrl = $(this).data('product-url');
+        var modal = $('#quick-view-modal');
+        var content = modal.find('.quick-view-content');
+
+        modal.show();
+        content.html('<div class="loader"></div>');
+
+        $.ajax({
+            url: productUrl,
+            success: function(data){
+                var html = $(data).find('.product-view').html();
+                content.html(html);
+            },
+            error: function(){
+                content.html('<p>Failed to load product details.</p>');
+            }
+        });
+    });
+
+    $('#quick-view-modal .close').on('click', function(){
+        $('#quick-view-modal').hide();
+    });
+
+    $(window).on('click', function(e){
+        if ($(e.target).is('#quick-view-modal')) {
+            $('#quick-view-modal').hide();
+        }
+    });
+});
+</script>
+<?php endif; ?>
