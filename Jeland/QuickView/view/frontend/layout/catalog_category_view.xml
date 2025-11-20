@@ -1,0 +1,21 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Jeland_QuickView::css/quickview.css"/>
+    </head>
+    <body>
+        <!-- Quick View Modal -->
+        <referenceContainer name="content">
+            <block class="Jeland\QuickView\Block\QuickView" 
+                   name="quickview.modal" 
+                   template="Jeland_QuickView::quickview.phtml"/>
+        </referenceContainer>
+
+        <!-- Override product list template -->
+        <referenceBlock name="category.products.list">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Jeland_QuickView::product/list.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>
